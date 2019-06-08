@@ -25,18 +25,18 @@ def mute(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_id = extract_user(message, args)
     if not user_id:
-        message.reply_text("You'll need to either give me a username to mute, or reply to someone to be muted.")
+        message.reply_text("Mute ചെയ്യേണ്ട ആളുടെ username നൽകുക, അല്ലെങ്കിൽ അയാളുടെ മെസ്സേജിന് റിപ്ലൈ ആയി കമാൻഡ് നൽകുക.")
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I'm not muting myself!")
+        message.reply_text("എനിക്ക് എന്നെത്തന്നെ mute ചെയ്യാൻ കഴിയില്ല!")
         return ""
 
     member = chat.get_member(int(user_id))
 
     if member:
         if is_user_admin(chat, user_id, member=member):
-            message.reply_text("Afraid I can't stop an admin from talking!")
+            message.reply_text("അഡ്മിൻ ആണ്, mute ചെയ്യാൻ കഴിയില്ല!")
 
         elif member.can_send_messages is None or member.can_send_messages:
             bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
@@ -82,7 +82,7 @@ def unmute(bot: Bot, update: Update, args: List[str]) -> str:
                                      can_send_media_messages=True,
                                      can_send_other_messages=True,
                                      can_add_web_page_previews=True)
-            message.reply_text("Unmuted!")
+            message.reply_text("ശരി, mute മാറ്റിയിട്ടുണ്ട്!")
             return "<b>{}:</b>" \
                    "\n#UNMUTE" \
                    "\n<b>Admin:</b> {}" \
@@ -158,7 +158,7 @@ def temp_mute(bot: Bot, update: Update, args: List[str]) -> str:
     try:
         if member.can_send_messages is None or member.can_send_messages:
             bot.restrict_chat_member(chat.id, user_id, until_date=mutetime, can_send_messages=False)
-            message.reply_text("കുറച്ചുനേരം മിണ്ടാതിരിക്ക്! 😠 Muted for {}!".format(time_val))
+            message.reply_text("ലവന്റെ വായടച്ചിട്ടുണ്ട്! 😠 Muted for {}!".format(time_val))
             return log
         else:
             message.reply_text("This user is already muted.")
@@ -166,7 +166,7 @@ def temp_mute(bot: Bot, update: Update, args: List[str]) -> str:
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text("കുറച്ചുനേരം മിണ്ടാതിരിക്ക്! 😠 Muted for {}!".format(time_val), quote=False)
+            message.reply_text("ലവന്റെ വായടച്ചിട്ടുണ്ട്! 😠 Muted for {}!".format(time_val), quote=False)
             return log
         else:
             LOGGER.warning(update)
