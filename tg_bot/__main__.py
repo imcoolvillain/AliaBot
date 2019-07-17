@@ -18,22 +18,11 @@ from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-ഹായ് {}, എന്റെ പേര് {}! എന്നെ ഉപയോഗിക്കേണ്ടത് എങ്ങനെ ആണെന്നുള്ളതിൽ എന്തേലും സംശയം ഉണ്ടെങ്കിൽ /help കൊടുക്കുക.
-
+ഹായ് {}, എന്റെ പേര് {}!
 എന്നെ നോക്കി നടത്തുന്നത്  [ഇദ്ദേഹം](tg://user?id={}) ആണ്. എന്നെ നിർമിച്ചിരിക്കുന്നത് python3യിൽ 
 python-telegram-bot library ഉപയോഗിച്ചാണ്. ഞാൻ പൂർണമായും open-sourced ആണ്. എന്റെ കോഡ് നിങ്ങൾക്ക് [ഇവിടെ](t.me/Deonnn) കാണാവുന്നതാണ്! 
 അതെ, @Deonnn ആണ് എന്റെ മാസ്റ്റർ!
-
-Using standard [Marie](http://telegram.dog/BanhammerMarie_bot) is always gonna be easier.
-Perks:
-- latest features
-- it's free
-- biggest list of users for any /info commands
-- the database will always be correctly formatted
-- bugs will always be fixed ASAP
-- no need to maintain anything yourself
-Also, no support can be given for any [clones like this](https://telegram.dog/MissAnn_Bot); source might be changed and that's not [my](https://telegram.dog/PaulSonOfLars) problem.
-**Keep in mind that any changes you DO do to the source have to be on github, as per the license.**
+Hit /help to find out more about how I can help you manage your group! 
 
 """
 
