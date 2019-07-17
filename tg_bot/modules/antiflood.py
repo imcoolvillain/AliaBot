@@ -64,13 +64,13 @@ def set_flood(bot: Bot, update: Update, args: List[str]) -> str:
         val = args[0].lower()
         if val == "off" or val == "no" or val == "0":
             sql.set_flood(chat.id, 0)
-            message.reply_text("ചറ പറ മെസ്സേജ് അയക്കുന്നവരെ ഇനി ഞാൻ പുറത്താക്കുന്നതല്ല.")
+            message.reply_text("മെസ്സേജ് നിയന്ത്രണം ഏർപ്പെടുത്തിയിട്ടില്ല.")
 
         elif val.isdigit():
             amount = int(val)
             if amount <= 0:
                 sql.set_flood(chat.id, 0)
-                message.reply_text("ചറ പറ മെസ്സേജ് അയക്കുന്നവരെ ഇനി ഞാൻ പുറത്താക്കുന്നതല്ല.")
+                message.reply_text("മെസ്സേജ് നിയന്ത്രണം ഏർപ്പെടുത്തിയിട്ടില്ല.")
                 return "<b>{}:</b>" \
                        "\n#SETFLOOD" \
                        "\n<b>Admin:</b> {}" \
@@ -90,7 +90,7 @@ def set_flood(bot: Bot, update: Update, args: List[str]) -> str:
                                                                     mention_html(user.id, user.first_name), amount)
 
         else:
-            message.reply_text("താങ്കൾ പറയുന്നത് എനിക്ക് മനസ്സിലാകുന്നില്ല.... ഒന്നെങ്കിൽ number ഉപയോഗിക്കുക അല്ലെങ്കിൽ Yes-No  ഉപയോഗിക്കുക ")
+            message.reply_text("താങ്കൾ പറയുന്നത് എനിക്ക് മനസ്സിലാകുന്നില്ല...  Number അല്ലെങ്കിൽ Yes-No  ഉപയോഗിക്കുക ")
 
     return ""
 
@@ -101,10 +101,10 @@ def flood(bot: Bot, update: Update):
 
     limit = sql.get_flood_limit(chat.id)
     if limit == 0:
-        update.effective_message.reply_text("ഞാൻ ഇപ്പോൾ മെസ്സേജ് നിയന്ത്രണം നടത്തുന്നില്ല !")
+        update.effective_message.reply_text("നിലവിൽ മെസ്സേജ് നിയന്ത്രണം നടത്തുന്നില്ല!")
     else:
         update.effective_message.reply_text(
-            " {} മെസ്സേജിൽ കൂടുതൽ ഒരേ സമയം അയക്കുന്ന ആളെ ഞാൻ ബൺ കൊടുത്ത് വിടുന്നതാണ്.".format(limit))
+            "ഒരേ സമയം {} മെസ്സേജിൽ കൂടുതൽ അയക്കുന്ന ആളെ ഇനി ബാൻ ചെയ്യുന്നതാണ്!".format(limit))
 
 
 def __migrate__(old_chat_id, new_chat_id):
@@ -116,11 +116,11 @@ def __chat_settings__(chat_id, user_id):
     if limit == 0:
         return "*Not* currently enforcing flood control."
     else:
-        return "മെസ്സേജ് നിയന്ത്രണം `{}` എന്നതിലേക്ക് ആക്കിയിരിക്കുന്നു .".format(limit)
+        return "മെസ്സേജ് നിയന്ത്രണം `{}` ലേക്ക് ആക്കിയിരിക്കുന്നു!".format(limit)
 
 
 __help__ = """
- - /flood: നിങ്ങൾക്ക് നിലവിലുള്ള മെസ്സേജ് നിയന്ത്രണം അറിയാൻ..
+ - /flood: നിങ്ങൾക്ക് നിലവിലുള്ള മെസ്സേജ് നിയന്ത്രണം അറിയാൻ.
 
 *Admin only:*
  - /setflood <int/'no'/'off'>: enables or disables flood control
